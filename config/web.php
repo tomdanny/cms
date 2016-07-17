@@ -15,11 +15,14 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\UsersData',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'security' => [
+            'passwordHashStrategy' => 'password_hash'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -30,7 +33,10 @@ $config = [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-                'showScriptName' => false
+            'showScriptName' => false,
+            'rules' => [
+                'register' => 'users-data/create'
+            ]
         ],
         'view' => [
             'class' => 'app\components\View'
