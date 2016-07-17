@@ -8,6 +8,7 @@ use app\models\UsersDataSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UsersDataController implements the CRUD actions for UsersData model.
@@ -26,6 +27,27 @@ class UsersDataController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['@']
+                    ]
+                ]
+            ]
+            
+            // 'denyCallback' => function($rule, $action) {
+            //     if ($action->id == 'delete') {
+            //         throw new ForbiddenHttpException('Only administrators can delete users.');
+            //     } else {
+            //         if (Yii::$app->user->isGuest) {
+            //             Yii::$app->user->loginRequired();
+            //         }
+            //     }
+            // } 
         ];
     }
 
