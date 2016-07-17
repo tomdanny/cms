@@ -9,7 +9,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'Summer_2016',
+            'cookieValidationKey' => '~{H[3uQu\#c&cS%H',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -62,11 +62,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        // 'allowedIPs' => ['127.0.0.1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        // 'allowedIPs' => ['127.0.0.1'],
     ];
 }
 
