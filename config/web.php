@@ -32,6 +32,9 @@ $config = [
             'enablePrettyUrl' => true,
                 'showScriptName' => false
         ],
+        'view' => [
+            'class' => 'app\components\View'
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
