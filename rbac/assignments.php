@@ -15,4 +15,7 @@ return [
     7 => [
         'admin',
     ],
+    8 => [
+        'member',
+    ],
 ];

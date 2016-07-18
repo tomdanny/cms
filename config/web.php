@@ -35,7 +35,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'register' => 'users-data/create'
+                'register' => 'users-data/create',
+                '/profile/<id:[\d-]+>' => '/users-data/view'
             ]
         ],
         'authManager' => [

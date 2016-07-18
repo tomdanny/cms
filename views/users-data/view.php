@@ -9,14 +9,38 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Users Datas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$photoInfo = $model->PhotoInfo;
+$photo = Html::img($photoInfo['url'],['alt'=>$photoInfo['alt']]);
+$options = ['data-lightbox'=>'profile-image','data-title'=>$photoInfo['alt']];
+
 ?>
 <div class="users-data-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($model->username) ?>'s Profile</h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+    <figure>
+        <?=Html::a($photo,$photoInfo['url'],$options)?>
+        <figcaption>(Click to enlarge)</figcaption>
+    </figure>
+
+   <h2>Users Details</h2>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            // 'id',
+            'first_name',
+            'last_name',
+            // 'email:email',
+            'ProfileGender',
+        ],
+    ]) ?>
+
+    <?php if (Yii::$app->user->can('updateUser',['user'=>$model])):?>
+
+     <p>
+        <?= Html::a('Update my Profile', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete my Profile', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -25,15 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'first_name',
-            'last_name',
-            'email:email',
-            'gender',
-        ],
-    ]) ?>
+    <?php endif?>
 
 </div>

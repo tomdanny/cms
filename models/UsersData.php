@@ -115,28 +115,28 @@ class UsersData extends ActiveRecord implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-    // public function getPhotoInfo()
-    // {
-    //     $path = Url::to('@webroot/images/photos/');
-    //     $url = Url::to('@web/images/photos/');
-    //     $filename = strtolower($this->name) . '.jpg';
-    //     $alt = $this->username . "'s Profile Picture";
+    public function getPhotoInfo()
+    {
+        $path = Url::to('@webroot/images/photos/');
+        $url = Url::to('@web/images/photos/');
+        $filename = strtolower($this->first_name) . '.jpg';
+        $alt = $this->username . "'s Profile Picture";
 
-    //     $imageInfo = ['alt'=> $alt];
+        $imageInfo = ['alt'=> $alt];
 
-    //     if (file_exists($path . $filename)) {
-    //         $imageInfo['url'] = $url.$filename;
-    //     } else {
-    //         $imageInfo['url'] = $url.'default.jpg';
-    //     }
+        if (file_exists($path . $filename)) {
+            $imageInfo['url'] = $url.$filename;
+        } else {
+            $imageInfo['url'] = $url.'default.jpg';
+        }
 
-    //     return $imageInfo;
-    // }
+        return $imageInfo;
+    }
 
-    // public function getProfileGender()
-    // {
-    //     return ($this->gender === 'Male') ? 'Bachelor' : 'Bachelorette';
-    // }
+    public function getProfileGender()
+    {
+        return ($this->gender === 'Male') ? 'Bachelor' : 'Bachelorette';
+    }
 
     public static function findByUsername($username)
     {
