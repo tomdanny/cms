@@ -33,21 +33,26 @@ class UsersDataController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['update'],
+                        'actions' => ['update', 'delete'],
                         'roles' => ['@']
-                    ]
-                ]
+                    ],
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['delete'],
+                    //     'roles' => ['admin']
+                    // ]
+                ],
+                'denyCallback' => function($rule, $action) {
+                    if ($action->id == 'delete') {
+                        throw new ForbiddenHttpException('Only administrators can delete users.');
+                    } else {
+                        if (Yii::$app->user->isGuest) {
+                            Yii::$app->user->loginRequired();
+                        }
+                    }
+                }
             ]
             
-            // 'denyCallback' => function($rule, $action) {
-            //     if ($action->id == 'delete') {
-            //         throw new ForbiddenHttpException('Only administrators can delete users.');
-            //     } else {
-            //         if (Yii::$app->user->isGuest) {
-            //             Yii::$app->user->loginRequired();
-            //         }
-            //     }
-            // } 
         ];
     }
 

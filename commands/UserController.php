@@ -47,6 +47,14 @@ class UserController extends Controller
                 'username' => 'philly',
                 'password' => 'phillysteak'
             ],
+            [
+                'first_name' => 'Mondo',
+                'last_name' => '',
+                'email' => '',
+                'gender' => '',
+                'username' => 'mondo',
+                'password' => 'mondo2016'
+            ],
 
 
         ];
@@ -58,46 +66,46 @@ class UserController extends Controller
         }
     }
 
-    // public function actionPermissions()
-    // {
-    //     $auth = Yii::$app->authManager;
+    public function actionPermissions() 
+    {
+        $auth = Yii::$app->authManager;
 
-    //     $updateUser = $auth->createPermission('updateUser');
-    //     $updateUser->description = 'Update a user';
-    //     $auth->add($updateUser);
+        $updateUser = $auth->createPermission('updateUser');
+        $updateUser->description = 'Update a user';
+        $auth->add($updateUser);
 
-    //     $deleteUser = $auth->createPermission('deleteUser');
-    //     $deleteUser->description = 'Delete a user';
-    //     $auth->add($deleteUser);
-    // }
+        $deleteUser = $auth->createPermission('deleteUser');
+        $deleteUser->description = 'Delete a user';
+        $auth->add($deleteUser);
+    }
 
-    // public function actionRoles()
-    // {
-    //     $auth = Yii::$app->authManager;
+    public function actionRoles()
+    {
+        $auth = Yii::$app->authManager;
 
-    //     $updateUser = $auth->getPermission('updateUser');
-    //     $deleteUser = $auth->getPermission(('deleteUser'));
+        $updateUser = $auth->getPermission('updateUser');
+        $deleteUser = $auth->getPermission(('deleteUser'));
 
-    //     $member = $auth->createRole('member');
-    //     $auth->add($member);
-    //     $auth->addChild($member, $updateUser);
+        $member = $auth->createRole('member');
+        $auth->add($member);
+        $auth->addChild($member, $updateUser);
 
-    //     $admin = $auth->createRole('admin');
-    //     $auth->add($admin);
-    //     $auth->addChild($admin, $deleteUser);
-    //     $auth->addChild($admin, $member);
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $deleteUser);
+        $auth->addChild($admin, $member);
 
-    // }
+    }
 
-    // public function actionRules()
-    // {
-    //     $auth = Yii::$app->authManager;
+    public function actionRules()
+    {
+        $auth = Yii::$app->authManager;
 
-    //     $rule = new ProfileRule();
-    //     $auth->add($rule);
+        $rule = new ProfileRule();
+        $auth->add($rule);
 
-    //     $updateUser = $auth->getPermission('updateUser');
-    //     $updateUser->ruleName = $rule->name;
-    //     $auth->update('updateUser', $updateUser);
-    // }
+        $updateUser = $auth->getPermission('updateUser');
+        $updateUser->ruleName = $rule->name;
+        $auth->update('updateUser', $updateUser);
+    }
 }

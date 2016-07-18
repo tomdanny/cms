@@ -163,19 +163,19 @@ class UsersData extends ActiveRecord implements IdentityInterface
     //     }
     // }
 
-    // public function afterSave($insert, $changedAttributes)
-    // {
-    //     if ($insert) {
-    //         $auth = Yii::$app->authManager;
-    //         if ($this->name == "Mondo") {
-    //             $role = $auth->getRole('admin');
-    //         } else {
-    //             $role = $auth->getRole('member');
-    //         }
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $auth = Yii::$app->authManager;
+            if ($this->first_name == "Mondo") {
+                $role = $auth->getRole('admin');
+            } else {
+                $role = $auth->getRole('member');
+            }
 
-    //         $auth->assign($role, $this->id);
-    //     }
+            $auth->assign($role, $this->id);
+        }
         
-    //     parent::afterSave($insert, $changedAttributes);
-    // }
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

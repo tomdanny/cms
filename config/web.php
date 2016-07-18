@@ -38,6 +38,9 @@ $config = [
                 'register' => 'users-data/create'
             ]
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager'
+        ],
         'view' => [
             'class' => 'app\components\View'
         ],
