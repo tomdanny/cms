@@ -48,6 +48,14 @@ class UserController extends Controller
                 'password' => 'phillysteak'
             ],
             [
+                'first_name' => 'Susan',
+                'last_name' => 'Cruz',
+                'email' => 'scruz@hatena.ne.jp',
+                'gender' => 'Female',
+                'username' => 'susan',
+                'password' => 'susus78'
+            ],
+            [
                 'first_name' => 'Mondo',
                 'last_name' => '',
                 'email' => '',
